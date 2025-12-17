@@ -64,8 +64,9 @@ ros2 topic echo /sbg/imu_data --once
 <h3>message type validation</h3>
 ros2 interface show sbg_driver/msg/SbgImuData
 <br>
-
-**"Minimal Command Cheat-Sheet for getting raw live data(Bookmark This)
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+<br>
+**"<h3>Minimal Command Cheat-Sheet for getting raw live data(Bookmark This)</h3>
 #### Source environment
 source /opt/ros/humble/setup.zsh
 source ~/ros2_ws/install/setup.zsh
