@@ -65,22 +65,22 @@ ros2 topic echo /sbg/imu_data --once
 ros2 interface show sbg_driver/msg/SbgImuData
 <br>
 
-"Minimal Command Cheat-Sheet (Bookmark This)
-###> Source environment
+**"Minimal Command Cheat-Sheet for getting raw live data(Bookmark This)
+#### Source environment
 source /opt/ros/humble/setup.zsh
 source ~/ros2_ws/install/setup.zsh
 
-###> Run IMU driver (LIVE DATA)
+#### Run IMU driver (LIVE DATA)
 ros2 launch sbg_driver sbg_device_launch.py
 
-###> Check node
+#### Check node
 ros2 node list
 
-###> Check topics
+#### Check topics
 ros2 topic list | grep sbg
 
-###> Echo live IMU data
-ros2 topic echo /sbg/imu_data"
+#### Echo live IMU data
+ros2 topic echo /sbg/imu_data"**
 
 <br>
 
