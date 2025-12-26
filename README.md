@@ -7,6 +7,9 @@ also using ros2 humble and sbg systems Ellipse2-N-G4A3-B2 using serial usb conne
 <br>
 you can easily get the explanation of code using chatgpt or any ai let's start with the correct order of things and not waste our time 
 <br>
+
+you can list the usb port using ls /dev/ttyUSB* -> generally it will show /dev/ttyUSB0
+
 <h3>workspace setup</h3>
 mkdir -p ~/ros2_ws/src
 cd ~/ros2_ws/src
@@ -198,3 +201,114 @@ ros2 topic echo /sbg/ekf_pos
 **------------------------------------------------------------------------------------**
 
 
+
+**message type validation**
+# SBG Ellipse Messages
+std_msgs/Header header
+	builtin_interfaces/Time stamp
+		int32 sec
+		uint32 nanosec
+	string frame_id
+
+# Time since sensor is powered up [us]
+uint32 time_stamp
+
+# IMU Status
+SbgImuStatus imu_status
+	bool imu_com
+	bool imu_status
+	bool imu_accel_x
+	bool imu_accel_y
+	bool imu_accel_z
+	bool imu_gyro_x
+	bool imu_gyro_y
+	bool imu_gyro_z
+	bool imu_accels_in_range
+	bool imu_gyros_in_range
+	bool imu_gyros_use_high_scale
+
+# Filtered Accelerometer [m/s^2]
+#
+# NED convention:
+#   x: X axis of the device frame
+#   y: Y axis of the device frame
+#   z: Z axis of the device frame
+#
+# ENU convention:
+#   x: Y axis of the device frame
+#   y: X axis of the device frame
+#   z: -Z axis of the device frame
+geometry_msgs/Vector3 accel
+	float64 x
+	float64 y
+	float64 z
+
+# Filtered Gyroscope [rad/s]
+#
+# NED convention:
+#   x: X axis of the device frame
+#   y: Y axis of the device frame
+#   z: Z axis of the device frame
+#
+# ENU convention:
+#   x: Y axis of the device frame
+#   y: X axis of the device frame
+#   z: -Z axis of the device frame
+geometry_msgs/Vector3 gyro
+	float64 x
+	float64 y
+	float64 z
+
+# Internal Temperature [°C]
+float32 temp
+
+# Sculling output [m/s2]
+#
+# NED convention:
+#   x: X axis of the device frame
+#   y: Y axis of the device frame
+#   z: Z axis of the device frame
+#
+# ENU convention:
+#   x: Y axis of the device frame
+#   y: X axis of the device frame
+#   z: -Z axis of the device frame
+geometry_msgs/Vector3 delta_vel
+	float64 x
+	float64 y
+	float64 z
+
+# Coning output [rad/s]
+#
+# NED convention:
+#   x: X axis of the device frame
+#   y: Y axis of the device frame
+#   z: Z axis of the device frame
+#
+# ENU convention:
+#   x: Y axis of the device frame
+#   y: X axis of the device frame
+#   z: -Z axis of the device frame
+geometry_msgs/Vector3 delta_angle
+	float64 x
+	float64 y
+	float64 z
+
+  <h4>ros2 topics with message type</h4>
+/parameter_events [rcl_interfaces/msg/ParameterEvent]
+/rosout [rcl_interfaces/msg/Log]
+/sbg/ekf_euler [sbg_driver/msg/SbgEkfEuler]
+/sbg/ekf_nav [sbg_driver/msg/SbgEkfNav]
+/sbg/ekf_quat [sbg_driver/msg/SbgEkfQuat]
+/sbg/gps_hdt [sbg_driver/msg/SbgGpsHdt]
+/sbg/gps_pos [sbg_driver/msg/SbgGpsPos]
+/sbg/gps_raw [sbg_driver/msg/SbgGpsRaw]
+/sbg/gps_vel [sbg_driver/msg/SbgGpsVel]
+/sbg/imu_data [sbg_driver/msg/SbgImuData]
+/sbg/imu_short [sbg_driver/msg/SbgImuShort]
+/sbg/status [sbg_driver/msg/SbgStatus]
+/sbg/utc_time [sbg_driver/msg/SbgUtcTime]
+/tf [tf2_msgs/msg/TFMessage]
+/tf_static [tf2_msgs/msg/TFMessage]
+
+**------------------------------------------------------------------------------------**
