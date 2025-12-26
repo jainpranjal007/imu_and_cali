@@ -312,3 +312,12 @@ geometry_msgs/Vector3 delta_angle
 /tf_static [tf2_msgs/msg/TFMessage]
 
 **------------------------------------------------------------------------------------**
+
+
+
+okay okay okay after configuring the imu in sbg center for gnss i am able to get data from topic /sbg/ekf_nav, /sbg/ekf_euler, /sbg/ekf_quat
+but the data i am getting is not correct for nav ig others are most prolly good have to check it after returning
+
+
+
+**---------------------------------------------------------------------------------------**
